@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScriptでRSSを取得</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-5">
+  <ul class="flex flex-wrap gap-5"></ul>
+
+  <script>
+    const viewXML = (xmlDocument) => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(xmlDocument, 'text/xml');
+      const rss = doc.documentElement.getElementsByTagName('item');
+
+      Object.values(rss).forEach((item, index) => {
+        if (index > 30) {
+          // return;
+        }
+        
+        const desc = parser.parseFromString(item.getElementsByTagName('description')[0].textContent, 'text/xml');
+        const imgSrc = desc.documentElement.getElementsByTagName('img')[0].getAttribute('src');
+        console.log(desc.documentElement);
+        const categories = item.getElementsByTagName('category');
+        Array.from(categories).forEach((category) => {
+          // console.log(category.textContent);
+        });
+        const rssTitle = item.getElementsByTagName('title')[0].textContent;
+        const rssLink   = item.getElementsByTagName('link')[0].textContent;
+        const txtHtml = `
+          <li class="xl:w-1/12 lg:w-1/6 md:w-1/3 sm:w-1/2 w-full">
+            <a href="${rssLink}" class="h-full p-3 rounded block shadow-md hover:opacity-70">
+              <p class="mb-2"><img src="${imgSrc}" class="object-cover h-16 w-full rounded"></p>
+              <p class="line-clamp-2 text-sm">${rssTitle}</p>
+            </a>
+          </li>`;
+        document.querySelector('ul').insertAdjacentHTML('beforeend', txtHtml );
+      })
+    };
+    fetch('https://ascii.jp/mac/rss.xml')
+    .then(response => response.text())
+    .then(xmlData => viewXML(xmlData));
+  </script>
+</body>
+</html>
