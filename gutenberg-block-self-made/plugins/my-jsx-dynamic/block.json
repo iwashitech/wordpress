@@ -1,0 +1,10 @@
+{
+  "apiVersion": 2,
+  "title": "My Gutenberg JSX Dynamic Block",
+  "name": "my-gutenberg-dynamic-jsx/foo",
+  "category": "layout",
+  "icon": "html",
+  "editorScript": "file:./build/index.js",
+  "editorStyle": "file:./css/editor.css",
+  "style": "file:./css/style.css"
+}

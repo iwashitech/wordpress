@@ -1,0 +1,10 @@
+{
+  "apiVersion": 2,
+  "title": "My Gutenberg JSX CSS Block",
+  "name": "my-gutenberg-jsx-css/foo",
+  "category": "layout",
+  "icon": "coffee",
+  "editorScript": "file:./build/index.js",
+  "editorStyle": "file:./css/editor.css",
+  "style": "file:./css/style.css"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "my-gutenberg",
+  "version": "1.0.0",
+  "description": "説明",
+  "main": "block.js",
+  "scripts": {
+    "start": "wp-scripts start",
+    "build": "wp-scripts build"
+  },
+  "author": "author name",
+  "license": "GPL-2.0-only",
+  "devDependencies": {
+    "@wordpress/scripts": "25.4.0"
+  }
+}
